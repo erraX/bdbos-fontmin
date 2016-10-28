@@ -1,0 +1,19 @@
+{
+  "name": "fontmin-mediator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "baidubce-sdk": "0.0.23",
+    "fontmin": "^0.9.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}
