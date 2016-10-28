@@ -1,14 +1,28 @@
-var runner = require('./lib/fontminRunner');
-var uploader = require('./lib/bosUploader');
+var utils = require('./lib/utils');
+var FontminRunner = require('./lib/FontminRunner');
+var BosUplaoder = require('./lib/BosUploader');
+var CssProcessor = require('./lib/CssProcessor');
 
-module.exports = function (options) {
-    return runner(options)
+function runner(options) {
+    var fontminRunner = new FontminRunner(options);
+    var bosUplaoder = new BosUplaoder(options);
+    var cssProcessor = new CssProcessor(options);
+
+    var processCss = function (css) {
+        return utils.compose(
+            cssProcessor.tripComments,
+            cssProcessor.addCdnHost
+        ).bind(cssProcessor);
+    };
+
+    return fontminRunner.run()
         .then(function (files) {
-            return uploader({
-                files: files,
-                bosConfig: options.bosConfig,
-                bucket: options.bucket,
-                prefix: options.prefix,
-            });
+            return bosUplaoder.run(files);
+        })
+        .then(function (files) {
+            files.css.content = processCss(files.css.content);
+            return files;
         });
 };
+
+module.exports = runner;
