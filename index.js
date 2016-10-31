@@ -14,18 +14,43 @@ function BosFontmin() {
 }
 
 BosFontmin.prototype._validatePluginStream = function (plugin) {
-    if (!this._plugins.length && plugin !== 'fontmin') {
+    if (!this._plugins.length && plugin.toLowerCase() !== 'fontmin') {
         throw 'fontmin must be register firstly!';
     }
 };
 
-BosFontmin.prototype.register = function (plugin, config) {
-    if (!plugin || !utils.isString(plugin)) {
-        return;
-    }
+BosFontmin.prototype.findPluginByName = function (plugin) {
+    var Plugin;
 
-    plugin = plugin.toLowerCase();
-    var Plugin = PLUGIN_MAP[plugin];
+    this._plugins.forEach(function (target) {
+        if (target.name === plugin) {
+            Plugin = target.plugin
+        }
+    });
+
+    return Plugin;
+};
+
+BosFontmin.prototype._resolvePlugin = function (plugin) {
+    if (utils.isString(plugin)) {
+        return PLUGIN_MAP[plugin.toLowerCase()];
+    }
+    else if (utils.isFunction(plugin)) {
+        return plugin;
+    }
+};
+
+BosFontmin.prototype._resolvePluginName = function (plugin) {
+    if (utils.isString(plugin)) {
+        return plugin.toLowerCase();
+    }
+    else if (utils.isFunction(plugin)) {
+        return plugin.name || 'Plugin';
+    }
+};
+
+BosFontmin.prototype.register = function (plugin, config) {
+    var Plugin = this._resolvePlugin(plugin);
 
     if (!Plugin) {
         return;
@@ -34,9 +59,19 @@ BosFontmin.prototype.register = function (plugin, config) {
     this._validatePluginStream(plugin);
 
     this._plugins.push({
-        name: plugin,
+        name: this._resolvePluginName(plugin),
         plugin: new Plugin(config)
     });
+
+    return this;
+};
+
+BosFontmin.prototype.listFonts = function () {
+    return this.findPluginByName('bos').listObjects();
+};
+
+BosFontmin.prototype.deleteFonts = function (files) {
+    return this.findPluginByName('bos').deleteObject(files);
 };
 
 BosFontmin.prototype.run = function () {

@@ -3,16 +3,11 @@ var should = chai.should();
 
 var BosFontmin = require('../../index');
 
-describe('bosUploader', function () {
+describe('BosFontmin', function () {
     var fm;
     var bosFontmin;
 
     beforeEach(function () {
-    });
-
-    it('uploader', function () {
-        this.timeout(10000);
-
         bosFontmin = new BosFontmin();
 
         // 这个必须一开始就注册
@@ -37,6 +32,10 @@ describe('bosUploader', function () {
             host: 'laser.bj.bcebos.com',
             prefix: '/lasertest/static/public/fonts'
         });
+    });
+
+    it('uploader', function () {
+        this.timeout(10000);
 
         return bosFontmin.run()
             .then(function (files) {
@@ -44,31 +43,21 @@ describe('bosUploader', function () {
                 files.should.have.property('css');
 
                 files.fonts.length.should.be.equal(4);
-
-                console.log(files.css);
             });
+    });
 
-        // return BosFontmin({
-        //     text: '江',
-        //     fontFamily: 'xingkai',
-        //     bosConfig: {
-        //         credentials: {
-        //             ak: 'fc35e789187047bf930a9b085a328566',
-        //             sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
-        //         },
-        //         endpoint: 'http://bj.bcebos.com'
-        //     },
-        //     bucket: 'laser',
-        //     prefix: '/lasertest/static/public/fonts',
-        //     host: 'laser.bj.bcebos.com'
-        // })
-        // .then(function (files) {
-        //     files.should.have.property('fonts');
-        //     files.should.have.property('css');
-        //
-        //     files.fonts.length.should.be.equal(4);
-        //
-        //     console.log(files.css);
-        // });
+    it('list fonts', function () {
+        this.timeout(10000);
+
+        return bosFontmin.listFonts();
+    });
+
+    it('delete fonts', function () {
+        this.timeout(10000);
+
+        return bosFontmin.run()
+            .then(function (files) {
+                bosFontmin.deleteFonts(files.fonts);
+            });
     });
 });

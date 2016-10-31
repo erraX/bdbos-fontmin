@@ -5,7 +5,7 @@ var should = chai.should();
 var bce = require('baidubce-sdk');
 var BosUploader = require('../../lib/BosUploader');
 
-describe('fontmin', function () {
+describe('BosUploader', function () {
     var bosUploader;
 
     beforeEach(function () {

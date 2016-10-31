@@ -7,7 +7,7 @@ var should = chai.should();
 var FmRunner = require('../../lib/FontminRunner');
 var Fontmin = require('fontmin');
 
-describe('fontmin', function () {
+describe('FontminRunner', function () {
     var fm;
 
     beforeEach(function () {
@@ -55,7 +55,7 @@ describe('fontmin', function () {
                     files.should.have.property('css');
 
                     files.fonts.length.should.be.equal(4);
-                    path.extname(files.css.relative).should.equal('.css');
+                    path.extname(files.css.name).should.equal('.css');
                 },
                 function (error) {
                     throw error;
@@ -75,7 +75,7 @@ describe('fontmin', function () {
                     files.should.have.property('css');
 
                     files.fonts.length.should.be.equal(4);
-                    path.extname(files.css.relative).should.equal('.css');
+                    path.extname(files.css.name).should.equal('.css');
 
                     (function () {
                         fs.stat(fm.outputPath);
