@@ -1,7 +1,7 @@
 {
-  "name": "fontmin-mediator",
+  "name": "bos-fontmin",
   "version": "1.0.0",
-  "description": "",
+  "description": "upload fontmin fonts to baidu bos",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive"
