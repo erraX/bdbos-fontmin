@@ -77,8 +77,8 @@ BosFontmin.prototype.deleteFonts = function (files) {
 BosFontmin.prototype.run = function () {
     var fontmin = this._plugins[0].plugin;
 
-    return this._plugins.slice(1).reduce(function (chain, target) {
-        return chain.then(target.plugin.run.bind(target.plugin));
+    return this._plugins.slice(1).reduce(function (chains, target) {
+        return chains.then(target.plugin.run.bind(target.plugin));
     }, fontmin.run());
 };
 

@@ -33,6 +33,21 @@ describe('FontminRunner', function () {
         }).should.throw(Error);
     });
 
+    it('throw font file not found', function () {
+        fm = new FmRunner({
+            text: '江',
+            fontFamily: 'xingkai_not_found'
+        });
+
+        return fm.run()
+            .then(function (files) {
+                return files; 
+            })
+            .catch(function (error) {
+                error.message.should.be.match(/File not found/);
+            });
+    });
+
     it('test defaults options', function () {
         fm.debug.should.be.false;
         fm.fontsPath.should.equal('./fonts');
