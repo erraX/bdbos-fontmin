@@ -18,11 +18,12 @@ describe('BosUploader', function () {
                 endpoint: 'http://bj.bcebos.com'
             },
             bucket: 'laser',
-            prefix: '/lasertest/static/public/fonts'
+            fontPrefix: '/lasertest/static/public/fonts',
+            cssPrefix: '/lasertest/static/public/css',
         });
     });
 
-    it('without prefix, should throw error', function () {
+    it('without fontPrefix, should throw error', function () {
         (function () {
             new BosUploader({
                 bosConfig: {
@@ -32,7 +33,24 @@ describe('BosUploader', function () {
                     },
                     endpoint: 'http://bj.bcebos.com'
                 },
-                bucket: 'laser'
+                bucket: 'laser',
+                cssPrefix: '/lasertest/static/public/css',
+            });
+        }).should.throw(Error);
+    });
+
+    it('without cssPrefix, should throw error', function () {
+        (function () {
+            new BosUploader({
+                bosConfig: {
+                    credentials: {
+                        ak: 'fc35e789187047bf930a9b085a328566',
+                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                    },
+                    endpoint: 'http://bj.bcebos.com'
+                },
+                bucket: 'laser',
+                fontPrefix: '/lasertest/static/public/fonts'
             });
         }).should.throw(Error);
     });
@@ -120,7 +138,8 @@ describe('BosUploader', function () {
 
     it('should initial config to self', function () {
         should.not.exist(bosUploader.debug);
-        bosUploader.prefix.should.equal('/lasertest/static/public/fonts');
+        bosUploader.fontPrefix.should.equal('/lasertest/static/public/fonts');
+        bosUploader.cssPrefix.should.equal('/lasertest/static/public/css');
         bosUploader.bucket.should.equal('laser');
         bosUploader.bosConfig.should.eql({
             credentials: {

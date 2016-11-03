@@ -139,17 +139,15 @@ describe('FontminRunner', function () {
 
         return fm.run()
             .then(function (files) {
+                // 输入了3个字体，每个3个字体文件
+                files.fonts.length.should.be.equal(3 * 4);
 
-                    // 输入了三种字体类型
-                    files.length.should.be.equal(3);
+                // 每个字体一个css文件
+                files.css.length.should.be.equal(3);
 
-                    // 每组字体要有`fonts`和`css`
-                    files.forEach(function (file) {
-                        file.should.have.property('fonts');
-                        file.should.have.property('css');
-
-                        path.extname(file.css.name).should.equal('.css');
-                    });
+                files.css.forEach(function (css) {
+                    path.extname(css.name).should.equal('.css');
+                });
             })
             .catch(function (error) {
                 throw error;
@@ -165,15 +163,14 @@ describe('FontminRunner', function () {
         return fm.run()
             .then(
                 function (files) {
-                    // 输入了三种字体类型
-                    files.length.should.be.equal(3);
+                    // 输入了3个字体，每个3个字体文件
+                    files.fonts.length.should.be.equal(3 * 4);
 
-                    // 每组字体要有`fonts`和`css`
-                    files.forEach(function (file) {
-                        file.should.have.property('fonts');
-                        file.should.have.property('css');
+                    // 每个字体一个css文件
+                    files.css.length.should.be.equal(3);
 
-                        path.extname(file.css.name).should.equal('.css');
+                    files.css.forEach(function (css) {
+                        path.extname(css.name).should.equal('.css');
                     });
 
                     (function () {

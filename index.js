@@ -49,6 +49,16 @@ BosFontmin.prototype._resolvePluginName = function (plugin) {
     }
 };
 
+BosFontmin.prototype.add = function (name, plugin) {
+    if (name in PLUGIN_MAP) {
+        return;
+    }
+
+    PLUGIN_MAP[name] = plugin;
+
+    return this;
+};
+
 BosFontmin.prototype.register = function (plugin, config) {
     var Plugin = this._resolvePlugin(plugin);
 
