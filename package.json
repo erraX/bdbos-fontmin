@@ -1,6 +1,6 @@
 {
   "name": "bos-fontmin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "upload fontmin fonts to baidu bos",
   "main": "index.js",
   "scripts": {
