@@ -12,15 +12,36 @@ describe('FontminRunner', function () {
 
     beforeEach(function () {
         fm = new FmRunner({
-            text: '江',
-            fontFamily: 'xingkai',
+            texts: [
+                {
+                    text: '江',
+                    fontFamily: 'xingkai'
+                },
+                {
+                    text: '主',
+                    fontFamily: 'simhei'
+                },
+                {
+                    text: '席',
+                    fontFamily: 'arial'
+                },
+            ]
         });
     });
 
-    it('without text, should throw error', function () {
+    it('without texts, should throw error', function () {
+        (function () {
+            new FmRunner();
+        }).should.throw(Error);
+    });
+
+    it('texts should be Array', function () {
         (function () {
             new FmRunner({
-                fontFamily: 'myFont'
+                texts: {
+                    text: '江',
+                    fontFamily: 'xingkai'
+                }
             });
         }).should.throw(Error);
     });
@@ -28,15 +49,59 @@ describe('FontminRunner', function () {
     it('without fontFamily, should throw error', function () {
         (function () {
             new FmRunner({
-                text: '江'
+                texts: [
+                    {
+                        text: '江',
+                        fontFamily: 'xingkai'
+                    },
+                    {
+                        text: '主',
+                        fontFamily: 'simhei'
+                    },
+                    {
+                        text: '席',
+                    },
+                ]
+            });
+        }).should.throw(Error);
+    });
+
+    it('without text, should throw error', function () {
+        (function () {
+            new FmRunner({
+                texts: [
+                    {
+                        text: '江',
+                        fontFamily: 'xingkai'
+                    },
+                    {
+                        text: '主',
+                        fontFamily: 'simhei'
+                    },
+                    {
+                        fontFamily: 'arial'
+                    },
+                ]
             });
         }).should.throw(Error);
     });
 
     it('throw font file not found', function () {
         fm = new FmRunner({
-            text: '江',
-            fontFamily: 'xingkai_not_found'
+            texts: [
+                {
+                    text: '江',
+                    fontFamily: 'xingkai'
+                },
+                {
+                    text: '主',
+                    fontFamily: 'simhei'
+                },
+                {
+                    text: '席',
+                    fontFamily: 'ariall'
+                },
+            ]
         });
 
         return fm.run()
@@ -53,28 +118,42 @@ describe('FontminRunner', function () {
         fm.fontsPath.should.equal('./fonts');
         should.equal(fm.outputPath, null);
         fm.fontTypes.should.eql(['eot', 'ttf', 'svg', 'woff']);
-        fm.text.should.equal('江');
-        fm.fontFamily.should.equal('xingkai');
-
-        fm.fontmin.should.be.instanceof(Fontmin);
-
+        fm.texts.should.eql([
+            {
+                text: '江',
+                fontFamily: 'xingkai'
+            },
+            {
+                text: '主',
+                fontFamily: 'simhei'
+            },
+            {
+                text: '席',
+                fontFamily: 'arial'
+            },
+        ]);
     });
 
     it('should not generate font files locally', function () {
         this.timeout(10000);
 
         return fm.run()
-            .then(
-                function (files) {
-                    files.should.have.property('fonts');
-                    files.should.have.property('css');
+            .then(function (files) {
 
-                    files.fonts.length.should.be.equal(4);
-                    path.extname(files.css.name).should.equal('.css');
-                },
-                function (error) {
-                    throw error;
-                });
+                    // 输入了三种字体类型
+                    files.length.should.be.equal(3);
+
+                    // 每组字体要有`fonts`和`css`
+                    files.forEach(function (file) {
+                        file.should.have.property('fonts');
+                        file.should.have.property('css');
+
+                        path.extname(file.css.name).should.equal('.css');
+                    });
+            })
+            .catch(function (error) {
+                throw error;
+            });
     });
 
     it('should not generate local font files', function () {
@@ -86,11 +165,16 @@ describe('FontminRunner', function () {
         return fm.run()
             .then(
                 function (files) {
-                    files.should.have.property('fonts');
-                    files.should.have.property('css');
+                    // 输入了三种字体类型
+                    files.length.should.be.equal(3);
 
-                    files.fonts.length.should.be.equal(4);
-                    path.extname(files.css.name).should.equal('.css');
+                    // 每组字体要有`fonts`和`css`
+                    files.forEach(function (file) {
+                        file.should.have.property('fonts');
+                        file.should.have.property('css');
+
+                        path.extname(file.css.name).should.equal('.css');
+                    });
 
                     (function () {
                         fs.stat(fm.outputPath);
