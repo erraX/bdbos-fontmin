@@ -13,6 +13,7 @@ describe('BosFontmin', function () {
 
         // 这个必须一开始就注册
         bosFontmin.register('fontmin', {
+            hash: 'sjdifji1319340eadf',
             texts: [
                 {
                     text: '江',
@@ -31,6 +32,7 @@ describe('BosFontmin', function () {
 
         // 处理css，替换路径等
         bosFontmin.register('css', {
+            fileName: 'font.sjdifji1319340eadf.css',
             host: 'laser.bj.bcebos.com',
             fontPrefix: '/lasertest/static/public/fonts',
             cssPrefix: '/lasertest/static/public/css',

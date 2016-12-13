@@ -12,6 +12,7 @@ describe('FontminRunner', function () {
 
     beforeEach(function () {
         fm = new FmRunner({
+            hash: '1231sdofidsaiof',
             texts: [
                 {
                     text: '江',

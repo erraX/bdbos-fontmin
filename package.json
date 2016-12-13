@@ -1,6 +1,6 @@
 {
   "name": "bos-fontmin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "upload fontmin fonts to baidu bos",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "baidubce-sdk": "0.0.23",
-    "fontmin": "^0.9.6"
+    "fontmin": "^0.9.6",
+    "gulp-rename": "^1.2.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
