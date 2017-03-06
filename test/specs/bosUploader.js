@@ -12,10 +12,10 @@ describe('BosUploader', function () {
         bosUploader = new BosUploader({
             bosConfig: {
                 credentials: {
-                    ak: 'fc35e789187047bf930a9b085a328566',
-                    sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                    ak: '',
+                    sk: ''
                 },
-                endpoint: 'http://bj.bcebos.com'
+                endpoint: 'laser.cdn.com'
             },
             bucket: 'laser',
             fontPrefix: '/lasertest/static/public/fonts',
@@ -28,10 +28,10 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        ak: 'fc35e789187047bf930a9b085a328566',
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        ak: '',
+                        sk: ''
                     },
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 bucket: 'laser',
                 cssPrefix: '/lasertest/static/public/css',
@@ -44,10 +44,10 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        ak: 'fc35e789187047bf930a9b085a328566',
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        ak: '',
+                        sk: ''
                     },
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 bucket: 'laser',
                 fontPrefix: '/lasertest/static/public/fonts'
@@ -60,10 +60,10 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        ak: 'fc35e789187047bf930a9b085a328566',
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        ak: '',
+                        sk: ''
                     },
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 prefix: '/lasertest/static/public/fonts'
             });
@@ -83,7 +83,7 @@ describe('BosUploader', function () {
         (function () {
             new BosUploader({
                 bosConfig: {
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 prefix: '/lasertest/static/public/fonts',
                 bucket: 'laser'
@@ -96,8 +96,8 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        ak: 'fc35e789187047bf930a9b085a328566',
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        ak: '',
+                        sk: ''
                     }
                 },
                 prefix: '/lasertest/static/public/fonts',
@@ -111,9 +111,9 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        sk: ''
                     },
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 prefix: '/lasertest/static/public/fonts',
                 bucket: 'laser'
@@ -126,9 +126,9 @@ describe('BosUploader', function () {
             new BosUploader({
                 bosConfig: {
                     credentials: {
-                        sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                        sk: ''
                     },
-                    endpoint: 'http://bj.bcebos.com'
+                    endpoint: 'laser.cdn.com'
                 },
                 prefix: '/lasertest/static/public/fonts',
                 bucket: 'laser'
@@ -143,10 +143,10 @@ describe('BosUploader', function () {
         bosUploader.bucket.should.equal('laser');
         bosUploader.bosConfig.should.eql({
             credentials: {
-                ak: 'fc35e789187047bf930a9b085a328566',
-                sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                ak: '',
+                sk: ''
             },
-            endpoint: 'http://bj.bcebos.com'
+            endpoint: 'laser.cdn.com'
         });
     });
 

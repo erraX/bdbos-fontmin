@@ -33,7 +33,7 @@ describe('BosFontmin', function () {
         // 处理css，替换路径等
         bosFontmin.register('css', {
             fileName: 'font.sjdifji1319340eadf.css',
-            host: 'laser.bj.bcebos.com',
+            host: 'laser.cdn.com',
             fontPrefix: '/lasertest/static/public/fonts',
             cssPrefix: '/lasertest/static/public/css',
         });
@@ -45,7 +45,7 @@ describe('BosFontmin', function () {
                     ak: 'fc35e789187047bf930a9b085a328566',
                     sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
                 },
-                endpoint: 'http://bj.bcebos.com'
+                endpoint: 'http://laser.cdn.com'
             },
             bucket: 'laser',
             fontPrefix: '/lasertest/static/public/fonts',
