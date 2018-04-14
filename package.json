@@ -1,12 +1,12 @@
 {
-  "name": "bos-fontmin",
+  "name": "bdbos-fontmin",
   "version": "1.0.7",
   "description": "upload fontmin fonts to baidu bos",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive"
   },
-  "author": "",
+  "author": "niminjie",
   "license": "ISC",
   "dependencies": {
     "baidubce-sdk": "0.0.23",
