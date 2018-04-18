@@ -42,8 +42,8 @@ describe('BosFontmin', function () {
         bosFontmin.register('bos', {
             bosConfig: {
                 credentials: {
-                    ak: 'fc35e789187047bf930a9b085a328566',
-                    sk: 'd9fa68c0a9724a4f82155fe7a10d98a0'
+                    ak: '',
+                    sk: ''
                 },
                 endpoint: 'http://laser.cdn.com'
             },
